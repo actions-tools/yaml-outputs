@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - run: |
           npm install
       - run: |
@@ -20,5 +23,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        id: test
         with:
-          milliseconds: 1000
+          filePath: '.github/test-file.yaml'
+          exportEnvVariables: true
+      - run: |
+          echo "${{ toJson(steps.test.outputs) }}"
+          echo "outputs variables:"
+          echo "${{ steps.test.outputs.var_1__var_1__var_1 }}"
+          echo "${{ steps.test.outputs.var_1__var_1__var_2 }}"
+          echo "${{ steps.test.outputs.var_1__var_1__var_3 }}"
+          echo "${{ steps.test.outputs.var_1__var_1__var_4__var_1__var_2 }}"
+          echo "${{ steps.test.outputs.var_1__var_2 }}"
+          echo "${{ steps.test.outputs.var_2 }}"
+          echo "environment variables:"
+          echo "${{ env.var_1__var_1__var_1 }}"
+          echo "${{ env.var_1__var_1__var_2 }}"
+          echo "${{ env.var_1__var_1__var_3 }}"
+          echo "${{ env.var_1__var_1__var_4__var_1__var_2 }}"
+          echo "${{ env.var_1__var_2 }}"
+          echo "${{ env.var_2 }}"
