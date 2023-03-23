@@ -20,5 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./
+        id: test
         with:
-          milliseconds: 1000
+          filePath: '.github/test-file.yaml'
+      - run: |
+          echo "${{ toJson(steps.test.outputs) }}"
