@@ -1,4 +1,4 @@
-name: 'Read YAML'
+name: 'YAML Outputs'
 description: 'Read a YAML file, flatten it recursively into a set of output parameters'
 
 inputs:
