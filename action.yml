@@ -1,8 +1,8 @@
-name: 'Read YAML'
+name: 'YAML Outputs'
 description: 'Read a YAML file, flatten it recursively into a set of output parameters'
 
 inputs:
-  filePath:
+  file-path:
     required: true
     description: 'The path of the YAML file to read'
 
@@ -11,7 +11,7 @@ inputs:
     description: 'The separator used to concatenate child properties. For example, "root__parent__child: true"'
     default: '__'
 
-  exportEnvVariables:
+  export-env-variables:
     required: false
     description: 'Export outputs as environment variables'
     default: true

@@ -1,10 +1,10 @@
-<h1 align="center">Read YAML Action 🚀</h1>
+<h1 align="center">YAML Outputs Action 🚀</h1>
 
 This GitHub Action reads a YAML file and flattens it recursively into a set of output parameters.
 
 ## Inputs 📝
 
-### `filePath`
+### `file-path`
 
 **Required** The path of the YAML file to read.
 
@@ -22,7 +22,7 @@ then setting separator to '__' would result in the output parameter root__parent
 
 Default: '__'
 
-### `exportEnvVariables`
+### `export-env-variables`
 
 It controls whether outputs are exported as environment variables or not. Default: true.
 
@@ -51,10 +51,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-tools/read-yaml@main
+      - uses: actions-tools/read-yaml@v1
         id: yaml
         with:
-          filePath: '.github/test-file.yaml'
+          file-path: '.github/test-file.yaml'
           separator: '__'
       - run: |
           echo "${{ steps.yaml.outputs.root__parent__child_1 }}"
