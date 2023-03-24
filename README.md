@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-tools/read-yaml@main
+      - uses: actions-tools/read-yaml@v1
         id: yaml
         with:
           file-path: '.github/test-file.yaml'

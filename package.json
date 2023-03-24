@@ -1,5 +1,5 @@
 {
-  "name": "read-yaml",
+  "name": "yaml-outputs",
   "version": "1.0.0",
   "private": true,
   "description": "A GitHub Action to get flatten outputs from a YAML file",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions-tools/read-yaml.git"
+    "url": "git+https://github.com/actions-tools/yaml-outputs.git"
   },
   "keywords": [
     "actions",
