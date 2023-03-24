@@ -30,29 +30,27 @@ exports.flattenObject = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const fs = __importStar(__nccwpck_require__(5747));
 const yaml = __importStar(__nccwpck_require__(1917));
-function run() {
-    try {
-        // Get input parameters
-        const filePath = core.getInput('file-path');
-        const separator = core.getInput('separator');
-        const exportEnvVariables = core.getBooleanInput('export-env-variables');
-        // Read file content and parse it as YAML
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        const yamlData = yaml.load(fileContent);
-        // Flatten the object recursively
-        const result = flattenObject(yamlData, {}, '', separator);
-        // Set the output parameters
-        for (const key of Object.keys(result)) {
-            core.setOutput(key, result[key]);
-            if (exportEnvVariables) {
-                core.exportVariable(key, result[key].toString());
-            }
+try {
+    // Get input parameters
+    const filePath = core.getInput('file-path');
+    const separator = core.getInput('separator');
+    const exportEnvVariables = core.getBooleanInput('export-env-variables');
+    // Read file content and parse it as YAML
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const yamlData = yaml.load(fileContent);
+    // Flatten the object recursively
+    const result = flattenObject(yamlData, {}, '', separator);
+    // Set the output parameters
+    for (const key of Object.keys(result)) {
+        core.setOutput(key, result[key]);
+        if (exportEnvVariables) {
+            core.exportVariable(key, result[key].toString());
         }
     }
-    catch (error) {
-        if (error instanceof Error)
-            core.setFailed(error.message);
-    }
+}
+catch (error) {
+    if (error instanceof Error)
+        core.setFailed(error.message);
 }
 function flattenObject(obj, result, prefix = '', separator = '__') {
     for (const key of Object.keys(obj)) {
@@ -65,7 +63,6 @@ function flattenObject(obj, result, prefix = '', separator = '__') {
     return result;
 }
 exports.flattenObject = flattenObject;
-run();
 
 
 /***/ }),
