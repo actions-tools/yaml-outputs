@@ -15,6 +15,7 @@ inputs:
     required: false
     description: 'Export outputs as environment variables'
     default: true
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
