@@ -22,6 +22,10 @@ then setting separator to '__' would result in the output parameter root__parent
 
 Default: '__'
 
+### `exportEnvVariables`
+
+It controls whether outputs are exported as environment variables or not. Default: true.
+
 ## Outputs 📜
 This action generates one output parameter for each key in the flattened YAML file. The name of each output parameter is the concatenation of the flattened key and the separator.
 
