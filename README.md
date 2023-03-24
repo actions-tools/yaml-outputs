@@ -1,4 +1,4 @@
-<h1 align="center">Read YAML Action 🚀</h1>
+<h1 align="center">YAML Outputs Action 🚀</h1>
 
 This GitHub Action reads a YAML file and flattens it recursively into a set of output parameters.
 
