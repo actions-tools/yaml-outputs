@@ -1,8 +1,8 @@
-# Read YAML Action
+<h1 align="center">Read YAML Action 🚀</h1>
 
 This GitHub Action reads a YAML file and flattens it recursively into a set of output parameters.
 
-## Inputs
+## Inputs 📝
 
 ### `filePath`
 
@@ -22,10 +22,10 @@ then setting separator to '__' would result in the output parameter root__parent
 
 Default: '__'
 
-## Outputs
+## Outputs 📜
 This action generates one output parameter for each key in the flattened YAML file. The name of each output parameter is the concatenation of the flattened key and the separator.
 
-## Usage
+## Usage 📚
 
 Given a YAML file `.github/test-file.yaml` with the following properties:
 
