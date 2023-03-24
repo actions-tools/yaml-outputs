@@ -5,9 +5,9 @@ import * as yaml from 'js-yaml'
 function run(): void {
   try {
     // Get input parameters
-    const filePath = core.getInput('filePath')
+    const filePath = core.getInput('file-path')
     const separator = core.getInput('separator')
-    const exportEnvVariables = core.getBooleanInput('exportEnvVariables')
+    const exportEnvVariables = core.getBooleanInput('export-env-variables')
 
     // Read file content and parse it as YAML
     const fileContent = fs.readFileSync(filePath, 'utf8')
