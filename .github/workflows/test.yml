@@ -25,8 +25,7 @@ jobs:
       - uses: ./
         id: test
         with:
-          filePath: '.github/test-file.yaml'
-          exportEnvVariables: true
+          file-path: '.github/test-file.yaml'
       - run: |
           echo "${{ toJson(steps.test.outputs) }}"
           echo "outputs variables:"
