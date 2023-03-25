@@ -15,6 +15,10 @@ inputs:
     description: 'The separator used to concatenate child properties. For example, "root__parent__child: true"'
     default: '__'
 
+  node:
+    required: false
+    description: 'The node to start flattening from. For example, "root.parent"'
+
   export-env-variables:
     required: false
     description: 'Export outputs as environment variables'
