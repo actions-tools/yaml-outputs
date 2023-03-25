@@ -69,8 +69,9 @@ jobs:
         id: yaml
         with:
           file-path: '.github/test-file.yaml'
-          separator: '__'
       - run: |
           echo "${{ steps.yaml.outputs.root__parent__child_1 }}"
           echo "${{ steps.yaml.outputs.root__parent__child_2 }}"
+          echo "${{ env.root__parent__child_1 }}"
+          echo "${{ env.root__parent__child_2 }}"
 ```
