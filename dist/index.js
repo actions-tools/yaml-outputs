@@ -26,20 +26,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.flattenObject = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const fs = __importStar(__nccwpck_require__(5747));
-const yaml = __importStar(__nccwpck_require__(1917));
+const utils_1 = __nccwpck_require__(918);
 try {
     // Get input parameters
     const filePath = core.getInput('file-path');
     const separator = core.getInput('separator');
+    const node = core.getInput('node');
     const exportEnvVariables = core.getBooleanInput('export-env-variables');
     // Read file content and parse it as YAML
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const yamlData = yaml.load(fileContent);
+    const yamlData = (0, utils_1.getYamlData)(fileContent, node);
     // Flatten the object recursively
-    const result = flattenObject(yamlData, {}, '', separator);
+    const result = (0, utils_1.flattenObject)(yamlData, {}, '', separator);
     // Set the output parameters
     for (const key of Object.keys(result)) {
         core.setOutput(key, result[key]);
@@ -52,6 +52,51 @@ catch (error) {
     if (error instanceof Error)
         core.setFailed(error.message);
 }
+
+
+/***/ }),
+
+/***/ 918:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.flattenObject = exports.getYamlData = void 0;
+const yaml = __importStar(__nccwpck_require__(1917));
+function getYamlData(fileContent, node) {
+    let yamlData = yaml.load(fileContent);
+    // If a node is specified, get the node from the YAML data
+    if (node) {
+        const nodeParts = node.split('.');
+        let currentNode = yamlData;
+        for (const nodePart of nodeParts) {
+            currentNode = currentNode[nodePart];
+        }
+        yamlData = currentNode;
+    }
+    return yamlData;
+}
+exports.getYamlData = getYamlData;
 function flattenObject(obj, result, prefix = '', separator = '__') {
     for (const key of Object.keys(obj)) {
         if (typeof obj[key] === 'object') {

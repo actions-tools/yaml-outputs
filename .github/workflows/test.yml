@@ -42,3 +42,15 @@ jobs:
           echo "${{ env.var_1__var_1__var_4__var_1__var_2 }}"
           echo "${{ env.var_1__var_2 }}"
           echo "${{ env.var_2 }}"
+      - uses: ./
+        id: test-nodes
+        with:
+          file-path: '.github/test-file.yaml'
+          node: 'var_1.var_1'
+      - run: |
+          echo "${{ toJson(steps.test-nodes.outputs) }}"
+          echo "outputs variables:"
+          echo "${{ steps.test-nodes.outputs.var_1 }}"
+          echo "${{ steps.test-nodes.outputs.var_2 }}"
+          echo "${{ steps.test-nodes.outputs.var_3 }}"
+          echo "${{ steps.test-nodes.outputs.var_4__var_1__var_2 }}"
