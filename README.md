@@ -10,7 +10,7 @@ This GitHub Action reads a YAML file and flattens it recursively into a set of o
 
 ### `separator`
 
-The separator used to concatenate child properties. For example, if the YAML file contains:
+**Optional** The separator used to concatenate child properties. For example, if the YAML file contains:
 
 ```yaml
 root:
@@ -21,6 +21,22 @@ root:
 then setting separator to '__' would result in the output parameter root__parent__child being set to true.
 
 Default: '__'
+
+### `node`
+
+**Optional** The node to start flattening from. For example, if the YAML file contains:
+
+```yaml
+root:
+  parent:
+    child: true
+```
+
+and node is set to `root.parent`, then the output parameter child will be set to true.
+
+Default: all the nodes in the file will be used.
+
+**Optional**
 
 ### `export-env-variables`
 

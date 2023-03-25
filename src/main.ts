@@ -1,16 +1,17 @@
 import * as core from '@actions/core'
 import * as fs from 'fs'
-import * as yaml from 'js-yaml'
+import {flattenObject, getYamlData} from './utils'
 
 try {
   // Get input parameters
   const filePath = core.getInput('file-path')
   const separator = core.getInput('separator')
+  const node = core.getInput('node')
   const exportEnvVariables = core.getBooleanInput('export-env-variables')
 
   // Read file content and parse it as YAML
   const fileContent = fs.readFileSync(filePath, 'utf8')
-  const yamlData: any = yaml.load(fileContent)
+  const yamlData: any = getYamlData(fileContent, node)
 
   // Flatten the object recursively
   const result = flattenObject(yamlData, {}, '', separator)
@@ -25,22 +26,4 @@ try {
   }
 } catch (error) {
   if (error instanceof Error) core.setFailed(error.message)
-}
-
-export function flattenObject(
-  obj: any,
-  result: any,
-  prefix = '',
-  separator = '__'
-): any {
-  for (const key of Object.keys(obj)) {
-    if (typeof obj[key] === 'object') {
-      flattenObject(obj[key], result, `${prefix}${key}${separator}`, separator)
-      continue
-    }
-
-    result[prefix + key] = obj[key]
-  }
-
-  return result
 }
