@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions-tools/yaml-outputs@v1
+      - uses: actions-tools/yaml-outputs@v2
         id: yaml
         with:
           file-path: '.github/test-file.yaml'
