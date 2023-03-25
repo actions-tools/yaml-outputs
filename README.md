@@ -22,7 +22,7 @@ then setting separator to '__' would result in the output parameter root__parent
 
 Default: '__'
 
-### `node`
+### `node`
 
 **Optional** The node to start flattening from. For example, if the YAML file contains:
 
@@ -36,11 +36,9 @@ and node is set to `root.parent`, then the output parameter child will be set to
 
 Default: all the nodes in the file will be used.
 
-**Optional**
-
 ### `export-env-variables`
 
-It controls whether outputs are exported as environment variables or not. Default: true.
+**Optional** It controls whether outputs are exported as environment variables or not. Default: true.
 
 ## Outputs 📜
 This action generates one output parameter for each key in the flattened YAML file. The name of each output parameter is the concatenation of the flattened key and the separator.
