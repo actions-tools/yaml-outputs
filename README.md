@@ -40,6 +40,10 @@ Default: all the nodes in the file will be used.
 
 **Optional** It controls whether outputs are exported as environment variables or not. Default: true.
 
+### `fail-on-file-not-found`
+
+**Optional** It controls whether the action should fail if the `file-path` is found or not.  Default: true.
+
 ## Outputs 📜
 This action generates one output parameter for each key in the flattened YAML file. The name of each output parameter is the concatenation of the flattened key and the separator.
 

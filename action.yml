@@ -24,6 +24,11 @@ inputs:
     description: 'Export outputs as environment variables'
     default: true
 
+  fail-on-file-not-found:
+    required: false
+    description: 'Set to false if you do not want the action to fail if the file does not exist'
+    default: true
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

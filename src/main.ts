@@ -8,9 +8,23 @@ try {
   const separator = core.getInput('separator')
   const node = core.getInput('node')
   const exportEnvVariables = core.getBooleanInput('export-env-variables')
+  const failOnFileNotFoundInput = core.getInput('fail-on-file-not-found', {
+    required: false
+  })
+  const failOnFileNotFound =
+    failOnFileNotFoundInput.trim().toLowerCase() === 'true'
 
-  // Read file content and parse it as YAML
-  const fileContent = fs.readFileSync(filePath, 'utf8')
+  let fileContent
+  try {
+    // Read file content and parse it as YAML
+    fileContent = fs.readFileSync(filePath, 'utf8')
+  } catch (error) {
+    if (failOnFileNotFound) throw error
+    else {
+      core.notice('file-path was not found')
+      process.exit(0)
+    }
+  }
   const yamlData: any = getYamlData(fileContent, node)
 
   // Flatten the object recursively

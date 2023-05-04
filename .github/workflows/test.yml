@@ -54,3 +54,15 @@ jobs:
           echo "${{ steps.test-nodes.outputs.var_2 }}"
           echo "${{ steps.test-nodes.outputs.var_3 }}"
           echo "${{ steps.test-nodes.outputs.var_4__var_1__var_2 }}"
+      - uses: ./
+        name: Test File Not Found, expect no failure
+        id: test-file-not-found  # By default the action fails if the file is not found, test that it does not fail when instructed
+        with:
+          file-path: '.github/not-found-test-file.yaml'
+          fail-on-file-not-found: false
+      - uses: ./
+        name: Test File Not Found, expect failure
+        id: test-file-not-found-fail
+        with:
+          file-path: '.github/not-found-test-file.yaml'
+        continue-on-error: true
