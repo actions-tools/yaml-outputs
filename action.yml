@@ -12,7 +12,9 @@ inputs:
 
   separator:
     required: false
-    description: 'The separator used to concatenate child properties. For example, "root__parent__child: true"'
+    description:
+      'The separator used to concatenate child properties. For example,
+      "root__parent__child: true"'
     default: '__'
 
   node:
@@ -26,9 +28,11 @@ inputs:
 
   fail-on-file-not-found:
     required: false
-    description: 'Set to false if you do not want the action to fail if the file does not exist'
+    description:
+      'Set to false if you do not want the action to fail if the file does not
+      exist'
     default: true
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'

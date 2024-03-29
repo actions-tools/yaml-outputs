@@ -18,9 +18,9 @@ root:
     child: true
 ```
 
-then setting separator to '__' would result in the output parameter root__parent__child being set to true.
+then setting separator to '**' would result in the output parameter root**parent\_\_child being set to true.
 
-Default: '__'
+Default: '\_\_'
 
 ### `node`
 
@@ -42,9 +42,10 @@ Default: all the nodes in the file will be used.
 
 ### `fail-on-file-not-found`
 
-**Optional** It controls whether the action should fail if the `file-path` is found or not.  Default: true.
+**Optional** It controls whether the action should fail if the `file-path` is found or not. Default: true.
 
 ## Outputs 📜
+
 This action generates one output parameter for each key in the flattened YAML file. The name of each output parameter is the concatenation of the flattened key and the separator.
 
 ## Usage 📚
@@ -54,7 +55,7 @@ Given a YAML file `.github/test-file.yaml` with the following properties:
 ```yaml
 root:
   parent:
-    child_1: "my_string_111"
+    child_1: 'my_string_111'
     child_2: 112
 ```
 
