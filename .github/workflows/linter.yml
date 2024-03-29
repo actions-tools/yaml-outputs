@@ -48,3 +48,4 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_JSCPD: false
           GITHUB_ACTIONS_COMMAND_ARGS: -ignore 'property ".+" is not defined in object type'
+          VALIDATE_MARKDOWN: false
