@@ -4,10 +4,10 @@
   "version": "3.0.0",
   "author": "Manuel Cañete",
   "private": true,
-  "homepage": "https://github.com/actions-tools/yaml-outputs",
+  "homepage": "https://github.com/correlation-one/yaml-outputs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions-tools/yaml-outputs.git"
+    "url": "git+https://github.com/correlation-one/yaml-outputs.git"
   },
   "keywords": [
     "actions",
@@ -15,7 +15,7 @@
     "setup"
   ],
   "bugs": {
-    "url": "https://github.com/actions-tools/yaml-outputs/issues"
+    "url": "https://github.com/correlation-one/yaml-outputs/issues"
   },
   "exports": {
     ".": "./dist/index.js"
