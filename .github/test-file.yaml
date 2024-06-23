@@ -1,14 +1,14 @@
 var_1:
   var_1:
-    var_1: "my_string_111"
+    var_1: 'my_string_111'
     var_2: 112
     var_3: true
     var_4:
       var_1:
-        var_1: "my_string_1141"
+        var_1: 'my_string_1141'
         var_2: 1142
         var_3: true
         var_4:
           var_1: false
   var_2: 12
-var_2: "my_string_2"
+var_2: 'my_string_2'

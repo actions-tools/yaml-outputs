@@ -1,4 +1,4 @@
-name: 'build-test'
+name: 'Continuous Integration'
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
@@ -6,24 +6,54 @@ on: # rebuild any PRs and main branch changes
       - main
       - 'releases/*'
 
+permissions:
+  contents: read
+
 jobs:
-  build: # make sure build/ci work properly
+  test-typescript:
+    name: TypeScript Tests
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
-      - run: |
-          npm install
-      - run: |
-          npm run all
-  test: # make sure the action works on a clean machine without building
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install Dependencies
+        id: npm-ci
+        run: npm ci
+
+      - name: Check Format
+        id: npm-format-check
+        run: npm run format:check
+
+      - name: Lint
+        id: npm-lint
+        run: npm run lint
+
+      - name: Test
+        id: npm-ci-test
+        run: npm run ci-test
+
+  test-action:
+    name: GitHub Actions Test
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test Local Action
         id: test
+        uses: ./
         with:
           file-path: '.github/test-file.yaml'
       - run: |
@@ -56,7 +86,7 @@ jobs:
           echo "${{ steps.test-nodes.outputs.var_4__var_1__var_2 }}"
       - uses: ./
         name: Test File Not Found, expect no failure
-        id: test-file-not-found  # By default the action fails if the file is not found, test that it does not fail when instructed
+        id: test-file-not-found # By default the action fails if the file is not found, test that it does not fail when instructed
         with:
           file-path: '.github/not-found-test-file.yaml'
           fail-on-file-not-found: false
