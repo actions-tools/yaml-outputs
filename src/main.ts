@@ -25,7 +25,7 @@ export async function run(): Promise<void> {
     } catch (error) {
       if (failOnFileNotFound) throw error
       else {
-        core.notice('file-path was not found')
+        core.debug('file-path was not found')
         process.exit(0)
       }
     }
