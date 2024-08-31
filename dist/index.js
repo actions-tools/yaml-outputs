@@ -28870,7 +28870,7 @@ async function run() {
             if (failOnFileNotFound)
                 throw error;
             else {
-                core.notice('file-path was not found');
+                core.debug('file-path was not found');
                 process.exit(0);
             }
         }
