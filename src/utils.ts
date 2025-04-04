@@ -30,7 +30,7 @@ export function flattenObject(
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 ): any {
   for (const key of Object.keys(obj)) {
-    if (typeof obj[key] === 'object') {
+    if (typeof obj[key] === 'object' && obj[key]) {
       flattenObject(obj[key], result, `${prefix}${key}${separator}`, separator)
       continue
     }

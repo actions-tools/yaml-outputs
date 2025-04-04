@@ -37,10 +37,12 @@ export async function run(): Promise<void> {
 
     // Set the output parameters
     for (const key of Object.keys(result)) {
+      // null / undefined values are set to empty string
+      // https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/core/src/utils.ts#L11
       core.setOutput(key, result[key])
 
       if (exportEnvVariables) {
-        core.exportVariable(key, result[key].toString())
+        core.exportVariable(key, result[key]?.toString() ?? '')
       }
     }
   } catch (error) {

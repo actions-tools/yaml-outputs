@@ -16,6 +16,11 @@ test('parse child property using separator', () => {
   expect(flatten.foo___bar___wow).toBe('wow')
 })
 
+test('parse child property with null value', () => {
+  const flatten = flattenObject({foo: {bar: null}}, {}, '', '___')
+  expect(flatten.foo___bar).toBe(null)
+})
+
 test('get yaml data', () => {
   const yaml = `
 foo:
@@ -33,4 +38,13 @@ foo:
 `
   const yamlData = getYamlData(yaml, 'foo')
   expect(yamlData.bar).toBe('wow')
+})
+
+test('get yaml data supports empty map fields', () => {
+  const yaml = `
+foo:
+  bar:
+`
+  const yamlData = getYamlData(yaml, 'foo')
+  expect(yamlData.bar).toBe(null)
 })

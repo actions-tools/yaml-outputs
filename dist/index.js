@@ -28880,9 +28880,11 @@ async function run() {
         const result = (0, utils_1.flattenObject)(yamlData, {}, '', separator);
         // Set the output parameters
         for (const key of Object.keys(result)) {
+            // null / undefined values are set to empty string
+            // https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/core/src/utils.ts#L11
             core.setOutput(key, result[key]);
             if (exportEnvVariables) {
-                core.exportVariable(key, result[key].toString());
+                core.exportVariable(key, result[key]?.toString() ?? '');
             }
         }
     }
@@ -28951,7 +28953,7 @@ result, prefix = '', separator = '__'
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 ) {
     for (const key of Object.keys(obj)) {
-        if (typeof obj[key] === 'object') {
+        if (typeof obj[key] === 'object' && obj[key]) {
             flattenObject(obj[key], result, `${prefix}${key}${separator}`, separator);
             continue;
         }
